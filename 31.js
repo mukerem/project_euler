@@ -1,33 +1,25 @@
-function check(a, n){
-    const d = {}
-    // console.log(a, n)
-    for(let x of a){
-        while(x){
-            const r = x %10
-            x = Math.floor(x / 10)
-            if(r in d) return false
-            if(r > n || r == 0)return false
-            d[r] = 1
-            // console.log(r, x, d)
+const dp = new Array(10000).fill(new Set())
+function  sum(c, a, z){
+    if(a == 0)return z
+    if(a < 0) return 0
+    if(dp[a] > 0) return dp[a] 
+    let t = {}
+    for(let x of c){
+        if(a >= x){
+            z.push(x)
+            const f = sum(c, a-x)
+            t.add(f)
         }
-    }
-    // console.log(a, Object.keys(d).length)
-    return n == Object.keys(d).length
-}
-function pandigitalProducts(n) {
 
-    const s = new Set();
-    for(let x = 2; x < 99; x++){
-        if(x%10 == Math.floor(x / 10))continue
-        for(let y = 3; y <10000; y++){
-            const z = x * y;
-            if(check([x, y, z], n))s.add(z)
-        }
     }
-    let sum = 0
-    for(let a of s) sum += a
-    return sum
-  }
+        // t += sum(c, a-x)
+    dp[a] = f
+    return dp[a]
+}
+function coinSums(n) {
+    const c = [1,2,5,10,20,50,100,200]
+    return sum(c, n);
+}
   
-console.log(pandigitalProducts(4));
-console.log(pandigitalProducts(9));
+console.log(coinSums(30));
+console.log(coinSums(200));
