@@ -10,3 +10,4 @@ function multiplesOf3and5(number) {
 }
 
 console.log(multiplesOf3and5(1000));
+console.log(multiplesOf3and5(100));
