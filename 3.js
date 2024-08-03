@@ -12,6 +12,3 @@ function largestPrimeFactor(number) {
   }
   
   console.log(largestPrimeFactor(600851475143));
-    
-   
-   
